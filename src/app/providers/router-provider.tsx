@@ -1,14 +1,30 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
 import { UsersPage } from '../../pages/users/UsersPage';
+import { Header } from '../../components/Header';
+
+const Layout = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  );
+};
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <UsersPage />,
-  },
-  {
-    path: '/users/:id',
-    element: <div>Edit Page</div>,
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <UsersPage />,
+      },
+      {
+        path: '/users/:id',
+        element: <div>Edit Page</div>,
+      },
+    ],
   },
 ]);
 
