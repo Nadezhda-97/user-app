@@ -5,6 +5,8 @@ import { useUserStore } from '../../app/store/user-store';
 
 import { UserCard } from '../../components/UserCard';
 
+import styles from '../../styles/UsersPage.module.scss';
+
 export const UsersPage = () => {
   const { data, isLoading, isError } = useUsers();
   const { activeUsers, archivedUsers, setUsers } = useUserStore();
@@ -19,20 +21,26 @@ export const UsersPage = () => {
   if (isError) return <div>Error loading users</div>;
 
   return (
-    <div>
-      <h1>Users</h1>
+    <div className={styles.page}>
+      <h2 className={styles.title}>Активные</h2>
 
-      <h2>Active</h2>
-      {activeUsers.map((user) => (
-        <UserCard key={user.id} user={user} />
-      ))}
+      <div className={styles.grid}>
+        {activeUsers.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
+      </div>
 
-      <h2>Archive</h2>
-      {archivedUsers.map((user) => (
-        <UserCard key={user.id} user={user} isArchived />
-      ))}
+      <h2 className={styles.title}>Архив</h2>
 
-      {archivedUsers.length === 0 && <p>No archived users</p>}
+      <div className={styles.grid}>
+        {archivedUsers.map((user) => (
+          <UserCard key={user.id} user={user} isArchived />
+        ))}
+      </div>
+
+      {archivedUsers.length === 0 && (
+        <p className={styles.empty}>Нет пользователей</p>
+      )}
     </div>
   );
 };
