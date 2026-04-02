@@ -1,0 +1,33 @@
+.page {
+  padding: 32px 80px;
+  background: #f5f6f8;
+  //min-height: 100vh;
+
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+
+  margin: 32px 0 16px;
+  padding-bottom: 12px;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.empty {
+  margin-top: 16px;
+  color: #999;
+}
+
+.loader {
+  padding: 40px;
+}
