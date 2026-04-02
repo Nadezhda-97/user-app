@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { UsersPage } from '../../pages/users/UsersPage';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <div>Users Page</div>,
+    element: <UsersPage />,
   },
   {
     path: '/users/:id',
