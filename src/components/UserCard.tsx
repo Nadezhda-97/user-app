@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '../app/store/user-store';
 import type { User } from '../types/User';
 
-import styles from '../styles/UserCard.module.scss';
+import styles from '../styles/UsersPage/UserCard.module.scss';
 
 type Props = {
   user: User;
