@@ -5,7 +5,7 @@ import { useUserStore } from '../../app/store/user-store';
 
 import { UserCard } from '../../components/UserCard';
 
-import styles from '../../styles/UsersPage.module.scss';
+import styles from '../../styles/UsersPage/UsersPage.module.scss';
 
 export const UsersPage = () => {
   const { data, isLoading, isError } = useUsers();
