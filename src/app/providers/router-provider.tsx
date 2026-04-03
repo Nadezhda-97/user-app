@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import { UsersPage } from '../../pages/users/UsersPage';
 import { Header } from '../../components/Header';
+import { UsersPage } from '../../pages/users/UsersPage';
+import { UserEditPage } from '../../pages/user-edit/UserEditPage';
 
 const Layout = () => {
   return (
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/users/:id',
-        element: <div>Edit Page</div>,
+        element: <UserEditPage />,
       },
     ],
   },
