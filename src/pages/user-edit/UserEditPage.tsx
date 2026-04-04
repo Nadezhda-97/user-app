@@ -10,6 +10,7 @@ import { Sidebar } from '../../components/UserEditPage/Sidebar';
 import { UserForm } from '../../components/UserEditPage/UserForm';
 import { Loader } from '../../components/ui/Loader';
 import { ErrorMessage } from '../../components/ui/ErrorMessage';
+import { Portal } from '../../components/ui/Portal';
 
 import styles from '../../styles/UserEditPage/UserEditPage.module.scss';
 
@@ -53,21 +54,36 @@ export const UserEditPage = () => {
       </div>
 
       {isModalOpen && (
-        <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
-          <div
-            className={styles.modal}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className={styles.close}
-              onClick={() => setIsModalOpen(false)}
+        <Portal>
+          <div className={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+            <div
+              className={styles.modal}
+              onClick={(e) => e.stopPropagation()}
             >
-              ✕
-            </button>
+              <button
+                className={styles.close}
+                onClick={() => setIsModalOpen(false)}
+              >
+                ✕
+              </button>
 
-            <p>Изменения сохранены</p>
+              <div className={styles.icon}>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 6L9 17l-5-5"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <p className={styles.text}>Изменения сохранены!</p>
+            </div>
           </div>
-        </div>
+        </Portal>
       )}
     </div>
   );
