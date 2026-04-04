@@ -4,6 +4,8 @@ import { useUsers } from '../../hooks/useUsers';
 import { useUserStore } from '../../app/store/user-store';
 
 import { UserCard } from '../../components/UserCard';
+import { Loader } from '../../components/ui/Loader';
+import { ErrorMessage } from '../../components/ui/ErrorMessage';
 
 import styles from '../../styles/UsersPage/UsersPage.module.scss';
 
@@ -17,8 +19,8 @@ export const UsersPage = () => {
     }
   }, [data, setUsers]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading users</div>;
+  if (isLoading) return <Loader />;
+  if (isError) return <ErrorMessage message='Ошибка загрузки пользователей' />;
 
   return (
     <div className={styles.page}>
