@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
 
-import type { User } from '../../types/User';
+import { useUsers } from '../../hooks/useUsers';
+
 import type { FormData } from '../../components/UserEditPage/schema';
 
 import { BackButton } from '../../components/UserEditPage/BackButton';
 import { Sidebar } from '../../components/UserEditPage/Sidebar';
 import { UserForm } from '../../components/UserEditPage/UserForm';
 import { Loader } from '../../components/ui/Loader';
+import { ErrorMessage } from '../../components/ui/ErrorMessage';
 
 import styles from '../../styles/UserEditPage/UserEditPage.module.scss';
 
 export const UserEditPage = () => {
   const { id } = useParams();
-  const queryClient = useQueryClient();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const users = queryClient.getQueryData<User[]>(['users']);
+  const { data: users, isLoading, isError } = useUsers();
   const user = users?.find((u) => u.id === Number(id));
 
   useEffect(() => {
@@ -31,7 +31,9 @@ export const UserEditPage = () => {
     }
   }, [isModalOpen]);
 
-  if (!user) return <Loader />;
+  if (isLoading) return <Loader />;
+  if (isError) return <ErrorMessage message='Ошибка загрузки пользователя' />;
+  if (!user) return <ErrorMessage message='Пользователь не найден' />;
 
   const handleSubmit = (data: FormData) => {
     console.log('UPDATED DATA', data);
