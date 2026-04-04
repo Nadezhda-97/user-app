@@ -8,6 +8,7 @@ import type { FormData } from '../../components/UserEditPage/schema';
 import { BackButton } from '../../components/UserEditPage/BackButton';
 import { Sidebar } from '../../components/UserEditPage/Sidebar';
 import { UserForm } from '../../components/UserEditPage/UserForm';
+import { Loader } from '../../components/ui/Loader';
 
 import styles from '../../styles/UserEditPage/UserEditPage.module.scss';
 
@@ -30,7 +31,7 @@ export const UserEditPage = () => {
     }
   }, [isModalOpen]);
 
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <Loader />;
 
   const handleSubmit = (data: FormData) => {
     console.log('UPDATED DATA', data);
